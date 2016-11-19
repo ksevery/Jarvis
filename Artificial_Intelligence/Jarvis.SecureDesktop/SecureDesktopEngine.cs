@@ -1,4 +1,4 @@
-﻿namespace SecureDesktop
+﻿namespace Jarvis.SecureDesktop
 {
     using System;
     using System.Runtime.CompilerServices;

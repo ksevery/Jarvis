@@ -1,4 +1,4 @@
-﻿namespace SecureDesktop.Enums
+﻿namespace Jarvis.SecureDesktop.Enums
 {
     public enum DesktopAccess : uint
     {
@@ -14,7 +14,7 @@
         DesktopSwitchDesktop = 0x0100,
 
         GenericAll = (DesktopReadObjects | DesktopCreateWindow | DesktopCreatemenu |
-                        DesktopHookControl | DesktopJournalRecord | DesktopJournalPlayback |
-                        DesktopEnumerate | DesktopWriteObjects | DesktopSwitchDesktop)
+                      DesktopHookControl | DesktopJournalRecord | DesktopJournalPlayback |
+                      DesktopEnumerate | DesktopWriteObjects | DesktopSwitchDesktop)
     }
 }

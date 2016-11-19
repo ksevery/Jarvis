@@ -1,4 +1,4 @@
-﻿namespace SecureDesktop.Providers.ClipBoardProvider
+﻿namespace Jarvis.SecureDesktop.Providers.ClipBoardProvider
 {
     using System;
     using System.Threading;

@@ -1,4 +1,4 @@
-﻿namespace SecureDesktop.Interfaces
+﻿namespace Jarvis.SecureDesktop.Interfaces
 {
     public interface IPasswordReceiver
     {

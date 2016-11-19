@@ -63,7 +63,7 @@ namespace Jarvis.Framework.Core
                 }
                 catch (Exception ex)
                 {
-                    _interactor.SendOutput(ex.Message);
+                    _interactor.SendOutput(ex.ToString());
                 }
                 finally
                 {

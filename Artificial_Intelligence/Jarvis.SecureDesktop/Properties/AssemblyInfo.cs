@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SecureDesktop")]
+[assembly: AssemblyTitle("Jarvis.SecureDesktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SecureDesktop")]
+[assembly: AssemblyProduct("Jarvis.SecureDesktop")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5086c2b8-cb2b-407f-bad9-7033c3fd688d")]
+[assembly: Guid("b7730ee4-50f0-46d8-bc6f-1e165bd67cfe")]
 
 // Version information for an assembly consists of the following four values:
 //

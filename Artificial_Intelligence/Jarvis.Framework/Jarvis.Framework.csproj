@@ -67,17 +67,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChatBot\ChatBot.csproj">
-      <Project>{2b65568a-4109-487f-8dc4-08bd3f4e9c86}</Project>
-      <Name>ChatBot</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SecureDesktop\SecureDesktop.csproj">
-      <Project>{5086c2b8-cb2b-407f-bad9-7033c3fd688d}</Project>
-      <Name>SecureDesktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TextEncryptor\TextEncryptor.csproj">
-      <Project>{07406d61-104a-4980-b90b-bbd9d257b671}</Project>
-      <Name>TextEncryptor</Name>
+    <ProjectReference Include="..\Jarvis.SecureDesktop\Jarvis.SecureDesktop.csproj">
+      <Project>{b7730ee4-50f0-46d8-bc6f-1e165bd67cfe}</Project>
+      <Name>Jarvis.SecureDesktop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

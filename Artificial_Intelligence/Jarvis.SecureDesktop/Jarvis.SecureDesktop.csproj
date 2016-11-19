@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5086C2B8-CB2B-407F-BAD9-7033C3FD688D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SecureDesktop</RootNamespace>
-    <AssemblyName>SecureDesktop</AssemblyName>
+    <RootNamespace>Jarvis.SecureDesktop</RootNamespace>
+    <AssemblyName>Jarvis.SecureDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,18 +51,16 @@
     <Compile Include="Enums\DesktopAccess.cs" />
     <Compile Include="Interfaces\IClipboardProvider.cs" />
     <Compile Include="Interfaces\IPasswordReceiver.cs" />
-    <Compile Include="Interfaces\IWriterProvider.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ClipBoardProvider\ClipBoardProvider.cs" />
     <Compile Include="Providers\ClipBoardProvider\StaHelper.cs" />
     <Compile Include="Providers\PasswordReceiver.cs" />
-    <Compile Include="Providers\WriterProvider.cs" />
     <Compile Include="SecureDesktopEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Jarvis.Framework.Core.Interfaces.Commands;
 using Jarvis.Framework.Core.Interfaces.Interactor;
-using SecureDesktop;
-using SecureDesktop.Interfaces;
-using SecureDesktop.Providers;
-using SecureDesktop.Providers.ClipBoardProvider;
+using Jarvis.SecureDesktop;
+using Jarvis.SecureDesktop.Providers;
+using Jarvis.SecureDesktop.Providers.ClipBoardProvider;
 
 namespace Jarvis.Framework.Core.Providers.Commands
 {
@@ -24,8 +22,7 @@ namespace Jarvis.Framework.Core.Providers.Commands
         private void ReceiveSecuredPassword(IInteractor interactor)
         {
             SecureDesktopEngine.Instance(
-                //new PasswordReceiver(),
-                null,
+                new PasswordReceiver(),
                 new ClipboardProvider()).Start();
 
             interactor.SendOutput("Password saved to clipboard.");
