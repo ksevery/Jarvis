@@ -13,14 +13,14 @@ using Jarvis.Framework.Modules.Interaction;
 
 namespace Jarvis.Framework.Core
 {
-    public class Engine
+    public class JarvisEngine
     {
         private readonly IInteractor _interactor;
         private readonly IDecisionTaker _decisionTaker;
         private readonly ICommandProcessor _commandProcessor;
         //private readonly IDataBase data;
 
-        private Engine(IInteractor interactor, IDecisionTaker decisionTaker, ICommandProcessor commandProcessor)
+        private JarvisEngine(IInteractor interactor, IDecisionTaker decisionTaker, ICommandProcessor commandProcessor)
         {
             this._interactor = interactor;
             this._decisionTaker = decisionTaker;
@@ -28,7 +28,7 @@ namespace Jarvis.Framework.Core
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static Engine Instance(IInteractor interactor, IDecisionTaker decisionTaker, ICommandProcessor commandProcessor)
+        public static JarvisEngine Instance(IInteractor interactor, IDecisionTaker decisionTaker, ICommandProcessor commandProcessor)
         {
             if (interactor == null)
             {
@@ -45,7 +45,7 @@ namespace Jarvis.Framework.Core
                 throw new ArgumentNullException($"Command Processor module cannot be null.");
             }
 
-            return new Engine(interactor, decisionTaker, commandProcessor);
+            return new JarvisEngine(interactor, decisionTaker, commandProcessor);
         }
 
         public void Start()

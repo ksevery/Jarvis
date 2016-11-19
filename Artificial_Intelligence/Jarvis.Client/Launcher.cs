@@ -9,7 +9,7 @@ namespace Jarvis.Client
     {
         static void Main()
         {
-            Engine.Instance(
+            JarvisEngine.Instance(
                 new Interactor(),
                 new DecisionTaker(),
                 new CommandProcessor())

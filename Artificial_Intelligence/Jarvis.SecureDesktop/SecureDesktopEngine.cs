@@ -6,7 +6,7 @@
 
     using Interfaces;
 
-    public class SecureDesktopEngine
+    public sealed class SecureDesktopEngine
     {
         private readonly IPasswordReceiver _passwordReceiver;
         private readonly IClipboardProvider _clipboardProvider;

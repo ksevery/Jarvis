@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9A98B4C-8152-47EE-848F-2DC542120639}</ProjectGuid>
+    <ProjectGuid>{FFA12886-D62E-4E4E-B43B-23997302793D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jarvis.Framework</RootNamespace>
-    <AssemblyName>Jarvis.Framework</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Jarvis.Encryptor</RootNamespace>
+    <AssemblyName>Jarvis.Encryptor</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,34 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\JarvisEngine.cs" />
-    <Compile Include="Core\Interfaces\Commands\ICommandProcessable.cs" />
-    <Compile Include="Core\Interfaces\Commands\ICommandProcessor.cs" />
-    <Compile Include="Core\Interfaces\DecisionTaker\IDecidable.cs" />
-    <Compile Include="Core\Interfaces\DecisionTaker\IDecisionTaker.cs" />
-    <Compile Include="Core\Interfaces\Interactor\IInputParseable.cs" />
-    <Compile Include="Core\Interfaces\Interactor\IInteractor.cs" />
-    <Compile Include="Core\Interfaces\Interactor\IInputReceiveble.cs" />
-    <Compile Include="Core\Interfaces\Interactor\IOutputSendable.cs" />
-    <Compile Include="Core\Providers\Commands\CommandConstants.cs" />
-    <Compile Include="Core\Providers\Commands\CommandProcessor.cs" />
-    <Compile Include="Core\Providers\DecisionTaking\DecisionTaker.cs" />
-    <Compile Include="Core\Providers\Interaction\Interactor.cs" />
+    <Compile Include="Cipher.cs" />
+    <Compile Include="Commands\CommandsProcessor.cs" />
+    <Compile Include="Commands\Constants.cs" />
+    <Compile Include="EncryptorEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Jarvis.Encryptor\Jarvis.Encryptor.csproj">
-      <Project>{ffa12886-d62e-4e4e-b43b-23997302793d}</Project>
-      <Name>Jarvis.Encryptor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Jarvis.SecureDesktop\Jarvis.SecureDesktop.csproj">
-      <Project>{b7730ee4-50f0-46d8-bc6f-1e165bd67cfe}</Project>
-      <Name>Jarvis.SecureDesktop</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

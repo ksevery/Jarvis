@@ -4,6 +4,7 @@ using Jarvis.Framework.Core.Interfaces.Interactor;
 using Jarvis.SecureDesktop;
 using Jarvis.SecureDesktop.Providers;
 using Jarvis.SecureDesktop.Providers.ClipBoardProvider;
+using Jarvis.Encryptor;
 
 namespace Jarvis.Framework.Core.Providers.Commands
 {
@@ -16,6 +17,9 @@ namespace Jarvis.Framework.Core.Providers.Commands
                 case CommandConstants.SecurePassword:
                     ReceiveSecuredPassword(interactor);
                     break;
+                case CommandConstants.StartEncryptor:
+                    StartEncryptor();
+                    break;
             }
         }
 
@@ -26,6 +30,11 @@ namespace Jarvis.Framework.Core.Providers.Commands
                 new ClipboardProvider()).Start();
 
             interactor.SendOutput("Password saved to clipboard.");
+        }
+
+        private void StartEncryptor()
+        {
+            EncryptorEngine.Instance.Start();
         }
     }
 }

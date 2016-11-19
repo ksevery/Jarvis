@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{0444EF50
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.SecureDesktop", "Jarvis.SecureDesktop\Jarvis.SecureDesktop.csproj", "{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Encryptor", "Jarvis.Encryptor\Jarvis.Encryptor.csproj", "{FFA12886-D62E-4E4E-B43B-23997302793D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFA12886-D62E-4E4E-B43B-23997302793D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA12886-D62E-4E4E-B43B-23997302793D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA12886-D62E-4E4E-B43B-23997302793D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA12886-D62E-4E4E-B43B-23997302793D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +65,6 @@ Global
 		{0C96D714-A869-46A7-98F1-B615C342F58B} = {B5EA80A6-D3BF-49A8-BF09-8F27575863CC}
 		{0444EF50-1A7B-4980-8185-9F4B658A32E8} = {B5EA80A6-D3BF-49A8-BF09-8F27575863CC}
 		{B7730EE4-50F0-46D8-BC6F-1E165BD67CFE} = {0C96D714-A869-46A7-98F1-B615C342F58B}
+		{FFA12886-D62E-4E4E-B43B-23997302793D} = {0C96D714-A869-46A7-98F1-B615C342F58B}
 	EndGlobalSection
 EndGlobal
