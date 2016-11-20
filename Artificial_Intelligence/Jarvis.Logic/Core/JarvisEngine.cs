@@ -40,12 +40,12 @@ namespace Jarvis.Logic.Core
 
             string commandLine = _interactor.RecieveInput();
 
-            while (commandLine != "end")
+            while (commandLine != "bye")
             {
                 try
                 {
-                    var commandParts = _interactor.ParseInput(commandLine);
-                    CommandProcessor.Instance.ProcessCommand(commandParts, _interactor);
+                    var commandSegments = _interactor.ParseInput(commandLine);
+                    CommandProcessor.Instance.ProcessCommand(commandSegments.Item1, commandSegments.Item2, _interactor);
                 }
                 catch (Exception ex)
                 {

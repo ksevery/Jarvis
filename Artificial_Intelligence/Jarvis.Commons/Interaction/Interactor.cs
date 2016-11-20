@@ -12,13 +12,26 @@ namespace Jarvis.Commons.Interaction
             return Console.ReadLine();
         }
 
-        public IList<string> ParseInput(string inputLine)
+        public Tuple<IList<string>, IList<string>>  ParseInput(string inputLine)
         {
-            IList<string> inputParams = inputLine
+            IList<string> commandSegments = inputLine
+                .Split(new [] { ": "}, StringSplitOptions.None)
+                .ToList();
+
+            IList<string> commandParts = commandSegments[0]
                 .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-            return inputParams;
+            if (commandSegments.Count > 1)
+            {
+                IList<string> commandParams = commandSegments[1]
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+
+                return new Tuple<IList<string>, IList<string>>(commandParts, commandParams);
+            }
+
+            return new Tuple<IList<string>, IList<string>>(commandParts, new List<string>());
         }
 
         public void SendOutput(string output)
