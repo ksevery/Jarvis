@@ -51,9 +51,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Jarvis.Framework\Jarvis.Framework.csproj">
-      <Project>{d9a98b4c-8152-47ee-848f-2dc542120639}</Project>
-      <Name>Jarvis.Framework</Name>
+    <ProjectReference Include="..\Jarvis.Commons\Jarvis.Commons.csproj">
+      <Project>{48ba70ac-ec33-4f3f-a3c0-c2c40e4808f5}</Project>
+      <Name>Jarvis.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jarvis.Logic\Jarvis.Logic.csproj">
+      <Project>{cd50beba-7e95-480a-8867-3ea8e638c818}</Project>
+      <Name>Jarvis.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

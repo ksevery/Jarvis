@@ -1,4 +1,6 @@
-﻿namespace Jarvis.Encryptor.Commands
+﻿using Jarvis.Commons.Interaction.Interfaces;
+
+namespace Jarvis.Encryptor.Commands
 {
     using System;
     using System.Collections.Generic;
@@ -8,19 +10,16 @@
 
     public class CommandProcessor
     {
-        private static CommandProcessor _instance;
+        private readonly IInteractor _interactor;
 
-        public static CommandProcessor Instance
+        private CommandProcessor(IInteractor interactor)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new CommandProcessor();
-                }
+            this._interactor = interactor;
+        }
 
-                return _instance;
-            }
+        public static CommandProcessor Instance(IInteractor interactor)
+        {
+            return new CommandProcessor(interactor);
         }
 
         public void ProcessCommand(string command)
@@ -46,45 +45,45 @@
                     this.ClearConsole();
                     break;
                 default:
-                    Console.WriteLine(@"Unknown command. Type ""help"" for a list of commands.");
+                    _interactor.SendOutput(@"Unknown command. Type ""help"" for a list of commands.");
                     break;
             }
         }
 
         private void EncryptString()
         {
-            Console.WriteLine("Enter a password to use:");
-            string password = Console.ReadLine();
-            Console.WriteLine("Enter a string to encrypt:");
-            string text = Console.ReadLine();
-            Console.WriteLine();
+            _interactor.SendOutput("Enter a password to use:");
+            string password = _interactor.RecieveInput();
+            _interactor.SendOutput("Enter a string to encrypt:");
+            string text = _interactor.RecieveInput();
+            _interactor.SendOutput(Environment.NewLine);
 
-            Console.WriteLine("Your encrypted string is:");
+            _interactor.SendOutput("Your encrypted string is:");
             string encryptedstring = Cipher.Encrypt(text, password);
-            Console.WriteLine(encryptedstring);
-            Console.WriteLine("");
+            _interactor.SendOutput(encryptedstring);
+            _interactor.SendOutput("");
         }
 
         private void DecryptString()
         {
-            Console.WriteLine("Enter a password to use:");
-            string password = Console.ReadLine();
-            Console.WriteLine("Enter a string to decrypt:");
-            string text = Console.ReadLine();
-            Console.WriteLine("");
+            _interactor.SendOutput("Enter a password to use:");
+            string password = _interactor.RecieveInput();
+            _interactor.SendOutput("Enter a string to decrypt:");
+            string text = _interactor.RecieveInput();
+            _interactor.SendOutput("");
 
-            Console.WriteLine("Your decrypted string is:");
+            _interactor.SendOutput("Your decrypted string is:");
             string decryptedstring = Cipher.Decrypt(text, password);
-            Console.WriteLine(decryptedstring);
-            Console.WriteLine("");
+            _interactor.SendOutput(decryptedstring);
+            _interactor.SendOutput("");
         }
 
         private void EncryptTxtFile()
         {
-            Console.WriteLine("Enter file path:");
-            string path = Console.ReadLine();
-            Console.WriteLine("Enter password:");
-            string password = Console.ReadLine();
+            _interactor.SendOutput("Enter file path:");
+            string path = _interactor.RecieveInput();
+            _interactor.SendOutput("Enter password:");
+            string password = _interactor.RecieveInput();
 
             List<List<string>> text = new List<List<string>>();
 
@@ -132,18 +131,18 @@
                         file.WriteLine(string.Join(" ", text[i]));
                     }
 
-                    Console.WriteLine($"File {newFileName} encrypted in folder EncryptedFiles.");
+                    _interactor.SendOutput($"File {newFileName} encrypted in folder EncryptedFiles.");
                 }
             }
             else
             {
-                Console.WriteLine("File alredy exists.");
+                _interactor.SendOutput("File alredy exists.");
             }
 
-            //Console.WriteLine("Enter file path:");
-            //string path = Console.ReadLine();
-            //Console.WriteLine("Enter password:");
-            //string password = Console.ReadLine();
+            //_interactor.SendOutput("Enter file path:");
+            //string path = _interactor.RecieveInput();
+            //_interactor.SendOutput("Enter password:");
+            //string password = _interactor.RecieveInput();
 
             //List<string> text = new List<string>();
 
@@ -183,21 +182,21 @@
             //            file.WriteLine(string.Join(" ", text[i]));
             //        }
 
-            //        Console.WriteLine($"File {newFileName} encrypted in folder EncryptedFiles.");
+            //        _interactor.SendOutput($"File {newFileName} encrypted in folder EncryptedFiles.");
             //    }
             //}
             //else
             //{
-            //    Console.WriteLine("File alredy exists.");
+            //    _interactor.SendOutput("File alredy exists.");
             //}
         }
 
         private void DecryptTxtFile()
         {
-            Console.WriteLine("Enter file path:");
-            string path = Console.ReadLine();
-            Console.WriteLine("Enter password:");
-            string password = Console.ReadLine();
+            _interactor.SendOutput("Enter file path:");
+            string path = _interactor.RecieveInput();
+            _interactor.SendOutput("Enter password:");
+            string password = _interactor.RecieveInput();
 
             List<List<string>> text = new List<List<string>>();
 
@@ -245,17 +244,17 @@
                         file.WriteLine(string.Join(" ", text[i]));
                     }
 
-                    Console.WriteLine($"File {newFileName} decrypted in folder DecryptedFiles.");
+                    _interactor.SendOutput($"File {newFileName} decrypted in folder DecryptedFiles.");
                 }
             }
             else
             {
-                Console.WriteLine("File alredy exists.");
+                _interactor.SendOutput("File alredy exists.");
             }
-            //Console.WriteLine("Enter file path:");
-            //string path = Console.ReadLine();
-            //Console.WriteLine("Enter password:");
-            //string password = Console.ReadLine();
+            //_interactor.SendOutput("Enter file path:");
+            //string path = _interactor.RecieveInput();
+            //_interactor.SendOutput("Enter password:");
+            //string password = _interactor.RecieveInput();
 
             //List<string> text = new List<string>();
 
@@ -295,12 +294,12 @@
             //            file.WriteLine(string.Join(" ", text[i]));
             //        }
 
-            //        Console.WriteLine($"File {newFileName} decrypted in folder DecryptedFiles.");
+            //        _interactor.SendOutput($"File {newFileName} decrypted in folder DecryptedFiles.");
             //    }
             //}
             //else
             //{
-            //    Console.WriteLine("File alredy exists.");
+            //    _interactor.SendOutput("File alredy exists.");
             //}
         }
 
@@ -317,8 +316,7 @@
                                            "clear - Clears console" + Environment.NewLine +
                                            "stop-encryptor" + Environment.NewLine +
                                            "------------------------------------------");
-
-            Console.Write(commandsDescription);
+            _interactor.SendOutput(commandsDescription.ToString());
         }
 
         private void ClearConsole()

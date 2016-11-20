@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FFA12886-D62E-4E4E-B43B-23997302793D}</ProjectGuid>
+    <ProjectGuid>{CD50BEBA-7E95-480A-8867-3EA8E638C818}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jarvis.Encryptor</RootNamespace>
-    <AssemblyName>Jarvis.Encryptor</AssemblyName>
+    <RootNamespace>Jarvis.Logic</RootNamespace>
+    <AssemblyName>Jarvis.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,16 +23,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,19 +41,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cipher.cs" />
-    <Compile Include="Commands\CommandsProcessor.cs" />
-    <Compile Include="Commands\Constants.cs" />
-    <Compile Include="EncryptorModule.cs" />
+    <Compile Include="Core\Interfaces\Decisions\IDecidable.cs" />
+    <Compile Include="Core\Interfaces\Decisions\IDecisionTaker.cs" />
+    <Compile Include="Core\JarvisEngine.cs" />
+    <Compile Include="Core\Providers\Commands\CommandConstants.cs" />
+    <Compile Include="Core\Providers\Commands\CommandProcessor.cs" />
+    <Compile Include="Core\Providers\Decisions\DecisionTaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Jarvis.Commons\Jarvis.Commons.csproj">
       <Project>{48ba70ac-ec33-4f3f-a3c0-c2c40e4808f5}</Project>
       <Name>Jarvis.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jarvis.Data\Jarvis.Data.csproj">
+      <Project>{4f85a6d8-4d2d-4693-999e-2d52e999979f}</Project>
+      <Name>Jarvis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jarvis.Encryptor\Jarvis.Encryptor.csproj">
+      <Project>{ffa12886-d62e-4e4e-b43b-23997302793d}</Project>
+      <Name>Jarvis.Encryptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jarvis.RegistryEditor\Jarvis.RegistryEditor.csproj">
+      <Project>{35c8b8d1-88ef-4b6a-9ef7-d1e44e68347e}</Project>
+      <Name>Jarvis.RegistryEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jarvis.SecureDesktop\Jarvis.SecureDesktop.csproj">
+      <Project>{b7730ee4-50f0-46d8-bc6f-1e165bd67cfe}</Project>
+      <Name>Jarvis.SecureDesktop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
