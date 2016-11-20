@@ -9,7 +9,7 @@
         static void Main()
         {
             JarvisEngine.Instance(
-                new Interactor(), 
+                new Interactor(),
                 new DecisionTaker())
                 .Start();
         }
