@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Jarvis.Logic.Utilities
+namespace Jarvis.Commons.Utilities
 {
     public sealed class Utility
     {
@@ -52,24 +52,27 @@ namespace Jarvis.Logic.Utilities
             return result.ToString();
         }
 
-        public DateTime RandomDateTime(DateTime? after = null, DateTime? before = null)
+        public DateTime RandomDateTime(DateTime after, DateTime before)
         {
-            var afterValue = after ?? new DateTime(2010, 1, 1, 0, 0, 0);
-            var beforeValue = before ?? DateTime.Now.AddDays(-60);
+            int range = (before - after).Days;
+            return after.AddDays(_random.Next(range));
 
-            var second = RandomNumber(afterValue.Second, beforeValue.Second);
-            var minute = RandomNumber(afterValue.Minute, beforeValue.Minute);
-            var hour = RandomNumber(afterValue.Hour, beforeValue.Hour);
-            var day = RandomNumber(afterValue.Day, beforeValue.Day);
-            var month = RandomNumber(afterValue.Month, beforeValue.Month);
-            var year = RandomNumber(afterValue.Year, beforeValue.Year);
+            //var afterValue = after ?? new DateTime(2000, 1, 1, 0, 0, 0);
+            //var beforeValue = before ?? DateTime.Now.AddDays(-60);
 
-            if (day > 28)
-            {
-                day = 28;
-            }
+            //var second = RandomNumber(afterValue.Second, beforeValue.Second);
+            //var minute = RandomNumber(afterValue.Minute, beforeValue.Minute);
+            //var hour = RandomNumber(afterValue.Hour, beforeValue.Hour);
+            //var day = RandomNumber(afterValue.Day, beforeValue.Day);
+            //var month = RandomNumber(afterValue.Month, beforeValue.Month);
+            //var year = RandomNumber(afterValue.Year, beforeValue.Year);
 
-            return new DateTime(year, month, day, hour, minute, second);
+            //if (day > 28)
+            //{
+            //    day = 28;
+            //}
+
+            //return new DateTime(year, month, day, hour, minute, second);
         }
     }
 }

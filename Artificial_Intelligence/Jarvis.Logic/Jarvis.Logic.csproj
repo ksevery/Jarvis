@@ -65,15 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Interfaces\Decisions\IDecidable.cs" />
-    <Compile Include="Core\Interfaces\Decisions\IDecisionTaker.cs" />
+    <Compile Include="Core\DecisionControl\Interfaces\IDecidable.cs" />
+    <Compile Include="Core\DecisionControl\Interfaces\IDecisionTaker.cs" />
     <Compile Include="Core\JarvisEngine.cs" />
-    <Compile Include="Core\Providers\Commands\CommandConstants.cs" />
-    <Compile Include="Core\Providers\Commands\CommandProcessor.cs" />
-    <Compile Include="Core\Providers\Commands\ModuleName.cs" />
-    <Compile Include="Core\Providers\Decisions\DecisionTaker.cs" />
+    <Compile Include="Core\CommandControl\CommandConstants.cs" />
+    <Compile Include="Core\CommandControl\CommandProcessor.cs" />
+    <Compile Include="Core\CommandControl\ModuleName.cs" />
+    <Compile Include="Core\DecisionControl\DecisionTaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -99,7 +98,12 @@
       <Project>{b7730ee4-50f0-46d8-bc6f-1e165bd67cfe}</Project>
       <Name>Jarvis.SecureDesktop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Jarvis.Web\Jarvis.Web.csproj">
+      <Project>{aa1b4217-8974-40c0-81e4-658e962c20a1}</Project>
+      <Name>Jarvis.Web</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

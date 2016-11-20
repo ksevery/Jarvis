@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Jarvis.Commons.Interaction.Interfaces;
+using Jarvis.Logic.Core.CommandControl;
 using Jarvis.Logic.Core.Interfaces.Decisions;
 using Jarvis.Logic.Core.Providers.Commands;
 

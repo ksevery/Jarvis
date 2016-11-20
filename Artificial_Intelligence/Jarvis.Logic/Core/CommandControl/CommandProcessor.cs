@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using Jarvis.Commons.Interaction.Interfaces;
+using Jarvis.Commons.Utilities;
 using Jarvis.Data;
 using Jarvis.Encryptor;
-using Jarvis.Logic.Utilities;
+using Jarvis.Logic.Core.Providers.Commands;
 using Jarvis.RegistryEditor;
 using Jarvis.SecureDesktop;
+using Jarvis.Web;
 
-namespace Jarvis.Logic.Core.Providers.Commands
+namespace Jarvis.Logic.Core.CommandControl
 {
     public sealed class CommandProcessor
     {
@@ -30,7 +32,7 @@ namespace Jarvis.Logic.Core.Providers.Commands
             switch (commandParts[0])
             {
                 case CommandConstants.AddToStartup:
-                    AddToStartup(commandParams, interactor);
+                    AddToStartup(commandParts, commandParams, interactor);
                     break;
                 case CommandConstants.Tell:
                     TellMe(commandParts, commandParams, interactor);
@@ -41,8 +43,8 @@ namespace Jarvis.Logic.Core.Providers.Commands
                 case CommandConstants.Open:
                     Open(commandParts, commandParams, interactor);
                     break;
-                case CommandConstants.WebSearch:
-                    WebSearch(commandParams, interactor);
+                case CommandConstants.Search:
+                    Search(commandParts, commandParams, interactor);
                     break;
                 default:
                     interactor.SendOutput(CommandNotFoundMsg);
@@ -50,47 +52,32 @@ namespace Jarvis.Logic.Core.Providers.Commands
             }
         }
 
-        public void WebSearch(IList<string> commandParams, IInteractor interactor)
+        public void Search(IList<string> commandParts, IList<string> commandParams, IInteractor interactor)
         {
-            Verification(commandParams.Count, 1, InvalidParametersMsg);
-            string qwery = string.Join("+", commandParams);
-            string site = @"http://" + @"www.google.com/#hl=en&q=" + qwery;
-
-            Process browser = new Process
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParts.Count, 2, CommandNotFoundMsg);
+            switch (commandParts[1])
             {
-                StartInfo =
-                {
-                    FileName = "firefox.exe",
-                    Arguments = site.Trim('\0'),
-                    WindowStyle = ProcessWindowStyle.Maximized
-                }
-            };
-            browser.Start();
-            interactor.SendOutput($@"Seraching in web for ""{string.Join(" ", commandParams)}""");
+                case "web":
+                    Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count, 2, CommandNotFoundMsg);
+                    Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count, 1, InvalidParametersMsg);
+                    WebManager.Instance.WebSearch(commandParams, interactor);
+                    break;
+                default:
+                    interactor.SendOutput(CommandNotFoundMsg);
+                    break;
+            }
         }
 
         public void Open(IList<string> commandParts, IList<string> commandParams, IInteractor interactor)
         {
-            Verification(commandParts.Count, 2, CommandNotFoundMsg);
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParts.Count, 2, CommandNotFoundMsg);
             switch (commandParts[1])
             {
                 case "site":
-                    Verification(commandParams.Count, 1, InvalidParametersMsg);
-                    string site = commandParams[0];
-
-                    Process browser = new Process
-                    {
-                        StartInfo =
-                        {
-                            FileName = "firefox.exe",
-                            Arguments = site.Trim('\0'),
-                            WindowStyle = ProcessWindowStyle.Maximized
-                        }
-                    };
-                    browser.Start();
-                    interactor.SendOutput($"{site} opened with Firefox.");
+                    Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count, 2, CommandNotFoundMsg);
+                    Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count, 1, InvalidParametersMsg);
+                    WebManager.Instance.OpenSite(commandParams, interactor);
                     break;
-                    
                 default:
                     interactor.SendOutput(CommandNotFoundMsg);
                     break;
@@ -99,14 +86,16 @@ namespace Jarvis.Logic.Core.Providers.Commands
 
         public void StartModule(IList<string> commandParts, IList<string> commandParams, IInteractor interactor)
         {
-            Verification(commandParts.Count, 2, CommandNotFoundMsg);
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParts.Count, 2, CommandNotFoundMsg);
             switch (commandParts[1])
             {
                 case ModuleName.SecureDesktop:
+                    Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count, 2, CommandNotFoundMsg);
                     SecureDesktopModule.Instance.Start();
                     interactor.SendOutput("Password saved to clipboard.");
                     break;
                 case ModuleName.Encryptor:
+                    Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count, 2, CommandNotFoundMsg);
                     EncryptorModule.Instance.Start(interactor);
                     break;
                 default:
@@ -117,15 +106,20 @@ namespace Jarvis.Logic.Core.Providers.Commands
 
         private void TellMe(IList<string> commandParts, IList<string> commandParams, IInteractor interactor)
         {
-            Verification(commandParts.Count, 2, CommandNotFoundMsg);
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(
+                commandParts.Count, 2, CommandNotFoundMsg);
             switch (commandParts[1])
             {
                 case "random":
-                    Verification(commandParts.Count, 3, CommandNotFoundMsg);
-                    Verification(commandParams.Count, 2, InvalidParametersMsg);
+                    Validator.Instance.ValidateIsAboveOqEqualMinimum(
+                        commandParts.Count, 3, CommandNotFoundMsg);
                     switch (commandParts[2])
                     {
                         case "number":
+                            Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count,
+                                3, CommandNotFoundMsg);
+                            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count,
+                                2, InvalidParametersMsg);
                             interactor.SendOutput(
                                 Utility.Instance.RandomNumber(
                                 int.Parse(commandParams[0]),
@@ -133,17 +127,25 @@ namespace Jarvis.Logic.Core.Providers.Commands
                                 .ToString());
                             break;
                         case "string":
+                            Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count,
+                                3, CommandNotFoundMsg);
+                            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count,
+                                2, InvalidParametersMsg);
                             interactor.SendOutput(
                             Utility.Instance.RandomString(
-                                int.Parse(commandParams[0]),
+                                int.Parse(commandParams[0]), 
                                 int.Parse(commandParams[1])));
                             break;
                         case "date":
+                            Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count,
+                                3, CommandNotFoundMsg);
+                            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count,
+                                2, InvalidParametersMsg);
                             interactor.SendOutput(
                             Utility.Instance.RandomDateTime(
                                 DateTime.Parse(commandParams[0]),
                                 DateTime.Parse(commandParams[1]))
-                                .ToString(CultureInfo.CurrentCulture));
+                                .ToString("d"));
                             break;
                         default:
                             interactor.SendOutput(CommandNotFoundMsg);
@@ -151,6 +153,8 @@ namespace Jarvis.Logic.Core.Providers.Commands
                     }
                     break;
                 case "joke":
+                    Validator.Instance.ValidateIsUnderOrEqualMax(
+                        commandParts.Count, 2, CommandNotFoundMsg);
                     interactor.SendOutput(
                         MockedDb.Instance.Jokes[
                             Utility.Instance.RandomNumber(
@@ -162,12 +166,14 @@ namespace Jarvis.Logic.Core.Providers.Commands
             }
         }
 
-        private void AddToStartup(IList<string> commandParams, IInteractor interactor)
+        private void AddToStartup(IList<string> commandParts, IList<string> commandParams, IInteractor interactor)
         {
-            Verification(commandParams.Count, 1, InvalidParametersMsg);
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParts.Count, 1, CommandNotFoundMsg);
+            Validator.Instance.ValidateIsAboveOqEqualMinimum(commandParams.Count, 1, InvalidParametersMsg);
             switch (commandParams[0])
             {
                 case "jarvis":
+                    Validator.Instance.ValidateIsUnderOrEqualMax(commandParts.Count, 2, CommandNotFoundMsg);
                     RegistryEditorModule.Instance.AddProcessToStartup("Jarvis.Client.exe");
                     interactor.SendOutput("Jarvis added to startup.");
                     break;
@@ -176,13 +182,7 @@ namespace Jarvis.Logic.Core.Providers.Commands
                     break;
             }
         }
+
         
-        private void Verification(int lenght, int expected, string errorMessage)
-        {
-            if (lenght < expected)
-            {
-                throw new Exception(errorMessage);
-            }
-        }
     }
 }

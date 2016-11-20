@@ -6,6 +6,6 @@
         public const string Tell = "tell";
         public const string StartModule = "start";
         public const string Open = "open";
-        public const string WebSearch = "websearch";
+        public const string Search = "search";
     }
 }
