@@ -2,7 +2,7 @@
 
 namespace Jarvis.Commons.Utilities
 {
-    public class Validator
+    public sealed class Validator
     {
         private static readonly Lazy<Validator> Lazy =
             new Lazy<Validator>(() => new Validator());

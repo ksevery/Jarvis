@@ -5,7 +5,7 @@ using Jarvis.Commons.Interaction.Interfaces;
 
 namespace Jarvis.Commons.Interaction
 {
-    public class Interactor : IInteractor
+    public class ConsoleInteractor : IInteractor
     {
         public string RecieveInput()
         {

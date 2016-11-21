@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Jarvis.Commons.Interaction;
 using Jarvis.Commons.Interaction.Interfaces;
 using Jarvis.Logic.Core.CommandControl;
 using Jarvis.Logic.Core.Interfaces.Decisions;
 using Jarvis.Logic.Core.Providers.Commands;
+using Jarvis.Logic.Core.VoiceControl;
 
 namespace Jarvis.Logic.Core
 {
     public class JarvisEngine
     {
+        public string commandLine = "";
         private readonly IInteractor _interactor;
         private readonly IDecisionTaker _decisionTaker;
         //private readonly IDataBase data;
+        private readonly VoiceController _voiceController;
 
         private JarvisEngine(IInteractor interactor, IDecisionTaker decisionTaker)
         {
             this._interactor = interactor;
             this._decisionTaker = decisionTaker;
+            this._voiceController = new VoiceController(interactor);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -37,12 +42,18 @@ namespace Jarvis.Logic.Core
 
         public void Start()
         {
+            //Console.Title = "Jarvis";
+
             _interactor.SendOutput("Hi, I am Jarvis.");
-
-            string commandLine = _interactor.RecieveInput();
-
+            //_voiceController.Speak("Hi, I am Jarvis.");
+            
+            _voiceController.StartListening();
+            
+            commandLine = _interactor.RecieveInput();
+            
             while (commandLine != "bye")
             {
+                //_voiceController.StopListening();
                 try
                 {
                     var commandSegments = _interactor.ParseInput(commandLine);
@@ -54,6 +65,7 @@ namespace Jarvis.Logic.Core
                 }
                 finally
                 {
+                    //_voiceController.StartListening();
                     commandLine = _interactor.RecieveInput();
                 }
             }

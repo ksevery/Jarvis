@@ -30,7 +30,7 @@ namespace Jarvis.Encryptor
             interactor.SendOutput("Encryptor started. Enter command:");
             var command = interactor.RecieveInput();
 
-            while (command != "stop-encryptor")
+            while (command != "stop encryptor")
             {
                 if (!string.IsNullOrEmpty(command))
                 {
