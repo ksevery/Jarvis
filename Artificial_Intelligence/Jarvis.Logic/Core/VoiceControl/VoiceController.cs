@@ -114,9 +114,9 @@ namespace Jarvis.Logic.Core.VoiceControl
             {
                 if (currentInput == sList[c])
                 {
-                    //CommandProcessor.Instance.ProcessCommand(shits.Item1, shits.Item2, _interactor);
-                    SendKeys.SendWait(currentInput);
-                    SendKeys.SendWait(Environment.NewLine);
+                    CommandProcessor.Instance.ProcessCommand(shits.Item1, shits.Item2, _interactor);
+                    //SendKeys.SendWait(currentInput);
+                    //SendKeys.SendWait(Environment.NewLine);
                 }
             }
 

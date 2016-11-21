@@ -25,10 +25,10 @@ namespace Jarvis.Encryptor
             }
         } 
 
-        public void Start(IInteractor interactor)
+        public async void Start(IInteractor interactor)
         {
             interactor.SendOutput("Encryptor started. Enter command:");
-            var command = interactor.RecieveInput();
+            var command = await interactor.RecieveInput();
 
             while (command != "stop encryptor")
             {
@@ -53,7 +53,7 @@ namespace Jarvis.Encryptor
                 }
 
                 interactor.SendOutput("Enter command:");
-                command = interactor.RecieveInput();
+                command = await interactor.RecieveInput();
             }
 
             interactor.SendOutput("Encryptor stoped.");

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Jarvis.Commons.Interaction.Interfaces;
+using System.Threading.Tasks;
 
 namespace Jarvis.Commons.Interaction
 {
     public class ConsoleInteractor : IInteractor
     {
-        public string RecieveInput()
+        public Task<string> RecieveInput()
         {
-            return Console.ReadLine();
+            return Task.Run(() => Console.ReadLine());
         }
 
         public Tuple<IList<string>, IList<string>>  ParseInput(string inputLine)

@@ -40,7 +40,7 @@ namespace Jarvis.Logic.Core
             return new JarvisEngine(interactor, decisionTaker);
         }
 
-        public void Start()
+        public async void Start()
         {
             //Console.Title = "Jarvis";
 
@@ -49,7 +49,7 @@ namespace Jarvis.Logic.Core
             
             _voiceController.StartListening();
             
-            commandLine = _interactor.RecieveInput();
+            commandLine = await _interactor.RecieveInput();
             
             while (commandLine != "bye")
             {
@@ -66,7 +66,7 @@ namespace Jarvis.Logic.Core
                 finally
                 {
                     //_voiceController.StartListening();
-                    commandLine = _interactor.RecieveInput();
+                    commandLine = await _interactor.RecieveInput();
                 }
             }
 

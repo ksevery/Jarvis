@@ -1,7 +1,9 @@
-﻿namespace Jarvis.Commons.Interaction.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Jarvis.Commons.Interaction.Interfaces
 {
     public interface IInputReceiveble
     {
-        string RecieveInput();
+        Task<string> RecieveInput();
     }
 }

@@ -50,12 +50,12 @@ namespace Jarvis.Encryptor.Commands
             }
         }
 
-        private void EncryptString()
+        private async void EncryptString()
         {
             _interactor.SendOutput("Enter a password to use:");
-            string password = _interactor.RecieveInput();
+            string password = await _interactor.RecieveInput();
             _interactor.SendOutput("Enter a string to encrypt:");
-            string text = _interactor.RecieveInput();
+            string text = await _interactor.RecieveInput();
             _interactor.SendOutput(Environment.NewLine);
 
             _interactor.SendOutput("Your encrypted string is:");
@@ -64,12 +64,12 @@ namespace Jarvis.Encryptor.Commands
             _interactor.SendOutput("");
         }
 
-        private void DecryptString()
+        private async void DecryptString()
         {
             _interactor.SendOutput("Enter a password to use:");
-            string password = _interactor.RecieveInput();
+            string password = await _interactor.RecieveInput();
             _interactor.SendOutput("Enter a string to decrypt:");
-            string text = _interactor.RecieveInput();
+            string text = await _interactor.RecieveInput();
             _interactor.SendOutput("");
 
             _interactor.SendOutput("Your decrypted string is:");
@@ -78,12 +78,12 @@ namespace Jarvis.Encryptor.Commands
             _interactor.SendOutput("");
         }
 
-        private void EncryptTxtFile()
+        private async void EncryptTxtFile()
         {
             _interactor.SendOutput("Enter file path:");
-            string path = _interactor.RecieveInput();
+            string path = await _interactor.RecieveInput();
             _interactor.SendOutput("Enter password:");
-            string password = _interactor.RecieveInput();
+            string password = await _interactor.RecieveInput();
 
             List<List<string>> text = new List<List<string>>();
 
@@ -191,12 +191,12 @@ namespace Jarvis.Encryptor.Commands
             //}
         }
 
-        private void DecryptTxtFile()
+        private async void DecryptTxtFile()
         {
             _interactor.SendOutput("Enter file path:");
-            string path = _interactor.RecieveInput();
+            string path = await _interactor.RecieveInput();
             _interactor.SendOutput("Enter password:");
-            string password = _interactor.RecieveInput();
+            string password = await _interactor.RecieveInput();
 
             List<List<string>> text = new List<List<string>>();
 
